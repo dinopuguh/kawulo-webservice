@@ -10,7 +10,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-func FindCluster(ctx echo.Context) error {
+func GetRestaurantClusters(ctx echo.Context) error {
 	db, err := database.Connect()
 	if err != nil {
 		log.Fatal(err.Error())
