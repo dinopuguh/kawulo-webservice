@@ -15,9 +15,9 @@ func GetLocationById(ctx echo.Context) error {
 		log.Fatal(err.Error())
 	}
 
-	loc_id := ctx.Param("loc_id")
+	locId := ctx.Param("locId")
 
-	data, err := services.FindLocationById(db, loc_id)
+	data, err := services.FindLocationById(db, locId)
 
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, "Failed to get location")

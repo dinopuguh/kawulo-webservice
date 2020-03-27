@@ -7,11 +7,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func FindRestaurantPrediction(db *mongo.Database, rest_id string) (models.Prediction, error) {
+func FindRestaurantPrediction(db *mongo.Database, restId string) (models.Prediction, error) {
 	ctx := database.Ctx
 
 	var result models.Prediction
-	err := db.Collection("prediction").FindOne(ctx, bson.M{"restaurant_id": rest_id}).Decode(&result)
+	err := db.Collection("prediction").FindOne(ctx, bson.M{"restaurant_id": restId}).Decode(&result)
 	if err != nil {
 		return result, err
 	}

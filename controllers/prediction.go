@@ -15,9 +15,9 @@ func GetRestaurantPredictions(ctx echo.Context) error {
 		log.Fatal(err.Error())
 	}
 
-	rest_id := ctx.Param("rest_id")
+	restId := ctx.Param("restId")
 
-	data, err := services.FindRestaurantPrediction(db, rest_id)
+	data, err := services.FindRestaurantPrediction(db, restId)
 
 	if err != nil {
 		log.Println(err.Error())

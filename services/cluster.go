@@ -7,10 +7,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func FindClusterByLocation(db *mongo.Database, loc_id string, month int32, year int32) ([]models.Cluster, error) {
+func FindClusterByLocation(db *mongo.Database, locId string, month int32, year int32) ([]models.Cluster, error) {
 	ctx := database.Ctx
 
-	filter := bson.M{"location_id": loc_id, "month": month, "year": year}
+	filter := bson.M{"location_id": locId, "month": month, "year": year}
 	csr, err := db.Collection("cluster").Find(ctx, filter)
 	if err != nil {
 		return nil, err

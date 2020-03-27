@@ -35,10 +35,10 @@ func FindAllRestaurants(db *mongo.Database) ([]models.Restaurant, error) {
 	return result, nil
 }
 
-func FindIndonesianRestaurants(db *mongo.Database, loc_id string) ([]models.Restaurant, error) {
+func FindRestaurantByLocation(db *mongo.Database, locId string) ([]models.Restaurant, error) {
 	ctx := database.Ctx
 
-	csr, err := db.Collection("restaurant").Find(ctx, bson.M{"locationID": loc_id})
+	csr, err := db.Collection("restaurant").Find(ctx, bson.M{"locationID": locId})
 	if err != nil {
 		return nil, err
 	}

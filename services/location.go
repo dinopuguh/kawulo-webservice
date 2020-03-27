@@ -100,11 +100,11 @@ func FindIndonesianLocations(db *mongo.Database) ([]models.Location, error) {
 	return result, nil
 }
 
-func FindLocationById(db *mongo.Database, loc_id string) (models.Location, error) {
+func FindLocationById(db *mongo.Database, locId string) (models.Location, error) {
 	ctx := database.Ctx
 
 	var result models.Location
-	err := db.Collection("location").FindOne(ctx, bson.M{"location_id": loc_id}).Decode(&result)
+	err := db.Collection("location").FindOne(ctx, bson.M{"location_id": locId}).Decode(&result)
 	if err != nil {
 		return result, err
 	}

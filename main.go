@@ -12,9 +12,9 @@ func main() {
 	r.Use(middleware.CORS())
 
 	r.GET("/location/search/:query", controllers.SearchLocation)
-	r.GET("/location/:loc_id", controllers.GetLocationById)
-	r.GET("/cluster/:loc_id/:month/:year", controllers.GetRestaurantClusters)
-	r.GET("/prediction/:rest_id", controllers.GetRestaurantPredictions)
+	r.GET("/location/:locId", controllers.GetLocationById)
+	r.GET("/cluster/:locId/:month/:year", controllers.GetRestaurantClusters)
+	r.GET("/prediction/:restId", controllers.GetRestaurantPredictions)
 
 	r.Start(":9000")
 }

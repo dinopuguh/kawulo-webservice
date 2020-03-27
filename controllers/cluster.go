@@ -16,11 +16,11 @@ func GetRestaurantClusters(ctx echo.Context) error {
 		log.Fatal(err.Error())
 	}
 
-	loc_id := ctx.Param("loc_id")
+	locId := ctx.Param("locId")
 	month, _ := strconv.Atoi(ctx.Param("month"))
 	year, _ := strconv.Atoi(ctx.Param("year"))
 
-	data, err := services.FindClusterByLocation(db, loc_id, int32(month), int32(year))
+	data, err := services.FindClusterByLocation(db, locId, int32(month), int32(year))
 
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, "Failed to get clusters")
