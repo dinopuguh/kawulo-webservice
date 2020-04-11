@@ -16,10 +16,5 @@ func FindRestaurantPrediction(db *mongo.Database, restId string) (models.Predict
 		return result, err
 	}
 
-	err = db.Client().Disconnect(ctx)
-	if err != nil {
-		return result, err
-	}
-
 	return result, nil
 }

@@ -35,3 +35,17 @@ func FindClusterByLocation(db *mongo.Database, locId string, month int32, year i
 
 	return result, nil
 }
+
+func FindClusterByRestaurant(db *mongo.Database, restId string, month int32, year int32) (models.Cluster, error) {
+	ctx := database.Ctx
+
+	var result models.Cluster
+
+	filter := bson.M{"restaurant_id": restId, "month": month, "year": year}
+	err := db.Collection("cluster").FindOne(ctx, filter).Decode(&result)
+	if err != nil {
+		return result, err
+	}
+
+	return result, nil
+}
