@@ -12,10 +12,8 @@ import (
 )
 
 type RestaurantDetail struct {
-	Cluster    models.Cluster
-	Temporal   []models.Temporal
-	Prediction models.Prediction
-	Sentiments []models.Sentiment
+	Cluster  models.Cluster
+	Temporal []models.Temporal
 }
 
 func GetRestaurantDetail(ctx echo.Context) error {
@@ -41,23 +39,9 @@ func GetRestaurantDetail(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, "Failed to get restaurant temporal data")
 	}
 
-	prediction, err := services.FindRestaurantPrediction(db, restId)
-	if err != nil {
-		log.Println(err.Error())
-		return ctx.JSON(http.StatusInternalServerError, "Failed to get restaurant prediction")
-	}
-
-	sentiments, err := services.FindSentimentByRestaurant(db, restId, 10)
-	if err != nil {
-		log.Println(err.Error())
-		return ctx.JSON(http.StatusInternalServerError, "Failed to get restaurant reviews")
-	}
-
 	data := RestaurantDetail{
-		Cluster:    cluster,
-		Temporal:   temporal,
-		Prediction: prediction,
-		Sentiments: sentiments,
+		Cluster:  cluster,
+		Temporal: temporal,
 	}
 
 	err = db.Client().Disconnect(mongoCtx)

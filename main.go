@@ -15,7 +15,8 @@ func main() {
 	r.GET("/location/:locId", controllers.GetLocationById)
 	r.GET("/cluster/:locId/:month/:year", controllers.GetRestaurantClusters)
 	r.GET("/restaurant/:restId/:month/:year", controllers.GetRestaurantDetail)
-	r.GET("/prediction/:restId", controllers.GetRestaurantPredictions)
+	r.GET("/prediction/:restId/:nTrain/:alpha", controllers.GetRestaurantPredictions)
+	r.GET("/baseline-prediction/:restId/:baseline/:alpha", controllers.GetRestaurantBaselinePredictions)
 
 	r.Start(":9000")
 }
