@@ -34,25 +34,3 @@ func FindAllReviews(db *mongo.Database) ([]models.Review, error) {
 
 	return result, nil
 }
-
-func FindReviewByRestaurant(db *mongo.Database, restId string) ([]models.Review, error) {
-	ctx := database.Ctx
-
-	csr, err := db.Collection("review").Find(ctx, bson.M{"restaurant_locationID": restId})
-	if err != nil {
-		return nil, err
-	}
-
-	result := make([]models.Review, 0)
-	for csr.Next(ctx) {
-		var row models.Review
-		err := csr.Decode(&row)
-		if err != nil {
-			return nil, err
-		}
-
-		result = append(result, row)
-	}
-
-	return result, nil
-}

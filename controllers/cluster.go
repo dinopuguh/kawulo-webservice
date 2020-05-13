@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -123,12 +124,29 @@ func GetRestaurantClusters(ctx echo.Context) error {
 		Orders: p.Sort,
 	})
 
+	locId := ctx.Param("locId")
+	month := ctx.Param("month")
+	year := ctx.Param("year")
+
+	hostname := "http://localhost:9000"
+	previous := fmt.Sprintf("%s/cluster/%s/%s/%s?limit=%v&page=%v", hostname, locId, month, year, p.Limit, p.Page-1)
+	next := fmt.Sprintf("%s/cluster/%s/%s/%s?limit=%v&page=%v", hostname, locId, month, year, p.Limit, p.Page+1)
+
+	if p.Page == 1 {
+		previous = ""
+	}
+	if p.Page == totalPages {
+		next = ""
+	}
+
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, "Failed to get clusters")
 	}
 
 	result := &response.PaginationResponse{
 		Pages:      res.Pages,
+		Previous:   previous,
+		Next:       next,
 		TotalCount: totalCount,
 		TotalPages: totalPages,
 	}

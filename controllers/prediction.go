@@ -26,7 +26,7 @@ func GetRestaurantPredictions(ctx echo.Context) error {
 	data, err := services.FindRestaurantPredictions(db, restId, nTrain, alpha)
 
 	if err != nil {
-		log.Println(err.Error())
+		log.Println(err)
 		return ctx.JSON(http.StatusInternalServerError, "Failed to get predictions")
 	}
 
