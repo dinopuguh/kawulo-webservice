@@ -16,3 +16,16 @@ type Sentiment struct {
 	Vader          float64            `bson:"vader" json:"vader" query:"vader"`
 	Wordnet        float64            `bson:"wordnet" json:"wordnet" query:"wordnet"`
 }
+
+type SentimentHeatmap struct {
+	ID    SentimentID `bson:"_id" json:"_id"`
+	Month int32       `bson:"month" json:"month"`
+	Year  int32       `bson:"year" json:"year"`
+	Count int32       `bson:"count" json:"count"`
+}
+
+type SentimentID struct {
+	RestaurantId string `bson:"restaurant_id" json:"restaurant_id"`
+	Month        int32  `bson:"month" json:"month"`
+	Year         int32  `bson:"year" json:"year"`
+}

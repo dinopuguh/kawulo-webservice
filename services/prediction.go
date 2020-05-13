@@ -8,8 +8,8 @@ import (
 )
 
 type RestaurantPrediction struct {
-	Predictions []models.Prediction
-	Error       models.PredictionError
+	Predictions []models.Prediction    `json:"predictions"`
+	Error       models.PredictionError `json:"error"`
 }
 
 func FindRestaurantPredictions(db *mongo.Database, restId string, nTrain float64, alpha float64) (RestaurantPrediction, error) {
